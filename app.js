@@ -10,6 +10,8 @@ const flash = require("connect-flash");
 const categoryRouter = require("./app/category/router");
 const dashboardRouter = require("./app/dashboard/router");
 const nominalRouter = require("./app/nominal/router");
+const voucherRouter = require("./app/voucher/router");
+const bankRouter = require("./app/bank/router");
 
 const app = express();
 
@@ -37,6 +39,8 @@ app.use(
   express.static(path.join(__dirname, "node_modules/admin-lte/"))
 );
 
+app.use("/bank", bankRouter);
+app.use("/voucher", voucherRouter);
 app.use("/nominal", nominalRouter);
 app.use("/category", categoryRouter);
 app.use("/", dashboardRouter);

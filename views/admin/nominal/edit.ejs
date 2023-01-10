@@ -40,64 +40,26 @@ include ../../partials/sidebar.ejs %>
                 <div class="card-body">
                   <div class="form-group">
                     <label>Coin Name</label>
-                    <select
-                      class="form-control select2"
-                      style="width: 100%"
-                      name="coinName"
-                      required
-                    >
-                      <option selected="selected">Select Coin</option>
-                      <option 
-                        <% if (nominal.coinName == "UC") { %> selected <% } %>
-                      >UC</option>
-                      <option <% if (nominal.coinName == "Gold") { %> selected <% } %>
-                      >Gold</option>
-                      <option
-                      <% if (nominal.coinName == "Diamond") { %> selected <% } %>
-                      >Diamond</option>
-                      <option
-                      <% if (nominal.coinName == "Jewel") { %> selected <% } %>
-                      >Jewel</option>
-                      <option
-                      <% if (nominal.coinName == "Gems") { %> selected <% } %>
-                      >Gems</option>
-                      <option
-                      <% if (nominal.coinName == "Cash") { %> selected <% } %>
-                      >Cash</option>
-                      <option
-                      <% if (nominal.coinName == "Point") { %> selected <% } %>
-                      >Point</option>
-                      <option
-                      <% if (nominal.coinName == "Money") { %> selected <% } %>
-                      >Money</option>
-                      <option
-                      <% if (nominal.coinName == "Dolar ($)") { %> selected <% } %>
-                      >Dolar ($)</option>
+                    <select class="form-control select2" style="width: 100%" name="coinName" required>
+                      <option selected="selected" disabled hidden value="">Select Coin</option>
+                      <option <% if (nominal.coinName == "UC") { %> selected <% } %>>UC</option>
+                      <option <% if (nominal.coinName == "Gold") { %> selected <% } %>>Gold</option>
+                      <option <% if (nominal.coinName == "Diamond") { %> selected <% } %>>Diamond</option>
+                      <option <% if (nominal.coinName == "Jewel") { %> selected <% } %>>Jewel</option>
+                      <option <% if (nominal.coinName == "Gems") { %> selected <% } %>>Gems</option>
+                      <option <% if (nominal.coinName == "Cash") { %> selected <% } %>>Cash</option>
+                      <option <% if (nominal.coinName == "Point") { %> selected <% } %>>Point</option>
+                      <option <% if (nominal.coinName == "Money") { %> selected <% } %>>Money</option>
+                      <option <% if (nominal.coinName == "Dolar ($)") { %> selected <% } %>>Dolar ($)</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label for="coinQuantity">Number of Coins</label>
-                    <input
-                      type="number"
-                      name="coinQuantity"
-                      value="<%= nominal.coinQuantity %>"
-                      class="form-control"
-                      id="coinQuantity"
-                      placeholder="Enter number of coins"
-                      required
-                    />
+                    <input type="number" name="coinQuantity" value="<%= nominal.coinQuantity %>" class="form-control" id="coinQuantity" placeholder="Enter number of coins" required />
                   </div>
                   <div class="form-group">
                     <label for="price">Price</label>
-                    <input
-                      type="number"
-                      name="price"
-                      value="<%= nominal.price %>"
-                      class="form-control"
-                      id="price"
-                      placeholder="Enter price of coins"
-                      required
-                    />
+                    <input type="number" name="price" value="<%= nominal.price %>" class="form-control" id="price" placeholder="Enter price of coins" required />
                   </div>
                 </div>
 

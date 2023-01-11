@@ -1,6 +1,6 @@
 const Bank = require("./model");
 
-const bankProvider = ["BNI", "BRI", "BCA", "BSI", "BNI Syariah"];
+const bankProvider = ["BNI", "BRI", "BCA", "BSI", "BNI Syariah", "Credit Card"];
 
 module.exports = {
   index: async (req, res) => {
@@ -15,6 +15,8 @@ module.exports = {
       res.render("admin/bank/view_bank", {
         bank,
         alert,
+        name: req.session.user.name,
+        title: "- Bank",
       });
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
@@ -26,6 +28,8 @@ module.exports = {
     try {
       res.render("admin/bank/create", {
         bankProvider,
+        name: req.session.user.name,
+        title: "- Add Bank",
       });
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
@@ -60,6 +64,8 @@ module.exports = {
       res.render("admin/bank/edit", {
         bank,
         bankProvider,
+        name: req.session.user.name,
+        title: "- Edit Bank",
       });
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
@@ -93,7 +99,7 @@ module.exports = {
     try {
       const { id } = req.params;
 
-      const bank = await Bank.findOneAndRemove(
+      await Bank.findOneAndRemove(
         {
           _id: id,
         },

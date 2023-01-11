@@ -17,6 +17,7 @@ let bankSchema = mongoose.Schema(
   },
   {
     versionKey: false,
+    timestamps: true,
   }
 );
 

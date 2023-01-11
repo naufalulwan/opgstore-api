@@ -22,6 +22,8 @@ module.exports = {
       res.render("admin/voucher/view_voucher", {
         voucher,
         alert,
+        name: req.session.user.name,
+        title: "- Voucher",
       });
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
@@ -36,6 +38,8 @@ module.exports = {
       res.render("admin/voucher/create", {
         category,
         nominal,
+        name: req.session.user.name,
+        title: "- Add Voucher",
       });
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
@@ -119,6 +123,8 @@ module.exports = {
         voucher,
         category,
         nominal,
+        name: req.session.user.name,
+        title: "- Edit Voucher",
       });
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
@@ -244,7 +250,7 @@ module.exports = {
 
       let status = voucher.status === "Y" ? "N" : "Y";
 
-      voucher = await Voucher.findOneAndUpdate(
+      await Voucher.findOneAndUpdate(
         {
           _id: id,
         },

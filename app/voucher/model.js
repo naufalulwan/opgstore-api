@@ -31,6 +31,7 @@ let nominalSchema = mongoose.Schema(
   },
   {
     versionKey: false,
+    timestamps: true,
   }
 );
 

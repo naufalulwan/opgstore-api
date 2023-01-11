@@ -50,8 +50,6 @@
   $(function() {
     $('#data-table').DataTable({
       // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-
-
       "paging": true,
       "lengthChange": false,
       "searching": true,
@@ -89,13 +87,38 @@
       .container()
       .appendTo("#data-table-voucher_wrapper .col-md-6:eq(0)");
 
+      $("#data-table-transaction")
+      .DataTable({
+        buttons: [
+          {
+            extend: "colvis",
+            columns: [3, 5],
+          },
+        ],
+        columnDefs: [
+          {
+            targets: [3, 5],
+            visible: false,
+          },
+        ],
+
+        paging: true,
+        lengthChange: false,
+        searching: true,
+        ordering: true,
+        info: true,
+        autoWidth: false,
+        responsive: true,
+      })
+      .buttons()
+      .container()
+      .appendTo("#data-table-transaction_wrapper .col-md-6:eq(0)");
+
     $("#alert").delay(3000).slideUp(200, function() {
       $(this).alert('close');
     })
 
     $('.select2').select2()
-
-
   });
 </script>
 </body>

@@ -9,6 +9,11 @@ const {
   actionDelete,
 } = require("./controller");
 
+const { auth, isLoginAdmin } = require("../middleware/auth");
+
+// router middleware
+router.use(isLoginAdmin);
+
 // router method
 router.get("/", index);
 router.get("/create", viewCreate);

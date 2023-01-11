@@ -1,0 +1,71 @@
+<table
+  id="data-table"
+  class="table table-bordered table-hover"
+  aria-label="Payment Form"
+>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Type of Payment</th>
+      <th>Bank</th>
+      <th>Status</th>
+      <th data-orderable="false">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(let i = 0; i < payment.length; i++) { %>
+    <tr>
+      <td style="width: 35px"><%= i + 1 %></td>
+      <td style="width: 20%"><%= payment[i].type %></td>
+      <td>
+        <% payment[i].banks.forEach(bank => { %>
+        <span class="badge badge-warning">
+          <%= bank.name %> - <%= bank.nameBank %>
+        </span>
+        <% }) %>
+      </td>
+
+      <td align="center" style="width: 8%">
+        <% if(payment[i].status === 'Y') { %>
+        <span class="badge badge-success"> Active </span>
+        <% } else { %>
+        <span class="badge badge-danger"> Not Active </span>
+        <% } %>
+      </td>
+
+      <td style="width: 210px" align="center">
+        <form
+          action="/payment/status/<%= payment[i]._id %>?_method=PUT"
+          method="POST"
+          style="display: inline-block; margin-right: 20px"
+        >
+          <% if(payment[i].status === 'Y') {%>
+          <button class="btn btn-danger btn-sm">
+            <i class="ion-close"></i>
+          </button>
+
+          <% } else { %>
+          <button class="btn btn-success btn-sm">
+            <i class="ion-checkmark"> </i>
+          </button>
+          <% } %>
+        </form>
+        <form
+          action="/payment/delete/<%= payment[i]._id %>?_method=DELETE"
+          method="POST"
+          style="display: inline-block"
+        >
+          <a
+            href="/payment/edit/<%= payment[i]._id %>"
+            class="btn btn-warning btn-sm"
+            ><i class="fas fa-pencil-alt"></i> Change</a
+          >
+          <button class="btn btn-danger btn-sm">
+            <i class="fas fa-trash"></i> Delete
+          </button>
+        </form>
+      </td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>

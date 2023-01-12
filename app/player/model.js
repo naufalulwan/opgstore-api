@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const bycrypt = require("bcryptjs");
+
+const HASH_ROUND = 10;
 
 let playerSchema = mongoose.Schema(
   {
@@ -20,7 +23,7 @@ let playerSchema = mongoose.Schema(
     role: {
       type: String,
       enum: ["admin", "user"],
-      default: "admin",
+      default: "user",
     },
     status: {
       type: String,
@@ -47,5 +50,24 @@ let playerSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+
+playerSchema.path("email").validate(
+  async (value) => {
+    try {
+      const count = await mongoose
+        .model("Player", playerSchema)
+        .countDocuments({ email: value });
+      return !count;
+    } catch (err) {
+      throw err;
+    }
+  },
+  (attr) => `${attr.value} is already taken`
+);
+
+playerSchema.pre("save", function (next) {
+  this.password = bycrypt.hashSync(this.password, HASH_ROUND);
+  next();
+});
 
 module.exports = mongoose.model("Player", playerSchema);

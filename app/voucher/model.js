@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-let nominalSchema = mongoose.Schema(
+let voucherSchema = mongoose.Schema(
   {
     name: {
       type: String,
@@ -10,6 +10,10 @@ let nominalSchema = mongoose.Schema(
       type: String,
       enum: ["Y", "N"],
       default: "Y",
+    },
+    isFeatured: {
+      type: Boolean,
+      default: false,
     },
     thumbnail: {
       type: String,
@@ -35,4 +39,4 @@ let nominalSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Voucher", nominalSchema);
+module.exports = mongoose.model("Voucher", voucherSchema);

@@ -135,7 +135,7 @@ module.exports = {
   actionEdit: async (req, res) => {
     try {
       const { id } = req.params;
-      const { name, category, nominals } = req.body;
+      const { name, category, nominals, feature } = req.body;
 
       if (req.file) {
         let tmp_path = req.file.path;
@@ -172,6 +172,7 @@ module.exports = {
                 name,
                 category,
                 nominals,
+                isFeatured: feature ? true : false,
                 thumbnail: filename,
               },
               {
@@ -198,6 +199,7 @@ module.exports = {
             name,
             category,
             nominals,
+            isFeatured: feature ? true : false,
           },
           {
             new: true,

@@ -1,7 +1,7 @@
 node_modules/
 .env
-
 .npmignore
+
 # local env files
 .env.local
 

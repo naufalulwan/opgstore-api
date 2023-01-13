@@ -34,7 +34,6 @@
   "publishConfig": {
     "ignore": [
       "node_modules/",
-      "public/",
       "views/"
     ]
   }

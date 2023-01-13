@@ -5,6 +5,7 @@ const Nominal = require("../nominal/model");
 const Payment = require("../payment/model");
 const Bank = require("../bank/model");
 const Transaction = require("../transaction/model");
+require("../users/model");
 
 const path = require("path");
 const fs = require("fs");
@@ -28,10 +29,13 @@ module.exports = {
   detailPage: async (req, res) => {
     try {
       const { id } = req.params;
+
       const voucher = await Voucher.findOne({ _id: id })
         .populate("category")
         .populate("nominals")
         .populate("user", "_id name phoneNumber");
+
+      console.log(voucher);
 
       if (!voucher) {
         return res.status(404).json({

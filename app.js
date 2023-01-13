@@ -30,6 +30,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use("/", (req, res, next) => {
+  console.log("Hello World");
+  res.send("Hello World");
+});
+
 // API
 app.use(`${URL}/players`, playerRouter);
 app.use(`${URL}/auth`, authRouter);

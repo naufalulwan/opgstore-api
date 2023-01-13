@@ -6,6 +6,7 @@ const logger = require("morgan");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const cors = require("cors");
+const router = express.Router();
 
 const playerRouter = require("./app/player/router");
 const authRouter = require("./app/auth/router");
@@ -35,9 +36,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", (req, res) => {
-  res.render("index", { title: "Hello World" });
-});
+app.use(
+  "/",
+  router.get("/", (req, res) => res.render("index", { title: "Hello World" }))
+);
 
 // API
 app.use(`${URL}/players`, playerRouter);

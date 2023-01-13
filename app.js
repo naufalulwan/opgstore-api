@@ -15,6 +15,10 @@ const URL = "/api/v1";
 
 app.use(cors());
 
+app.use("/", (req, res) => {
+  res.send("Hello World");
+});
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -34,11 +38,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
-app.all("/", (req, res) => {
-  console.log("Hello World");
-  res.send("Hello World");
-});
 
 // API
 app.use(`${URL}/players`, playerRouter);

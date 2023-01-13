@@ -15,6 +15,10 @@ const URL = "/api/v1";
 
 app.use(cors());
 
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
 app.use(
   session({
     secret: "keyboard cat",
@@ -23,17 +27,24 @@ app.use(
     cookie: {},
   })
 );
+
 app.use(methodOverride("_method"));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  "/adminlte",
+  express.static(path.join(__dirname, "node_modules/admin-lte/"))
+);
 
-app.use("/", (req, res, next) => {
+app.use("/", (req, res) => {
   console.log("Hello World");
   res.send("Hello World");
 });
+
+app.use("/dashboard", dashboardRouter);
 
 // API
 app.use(`${URL}/players`, playerRouter);

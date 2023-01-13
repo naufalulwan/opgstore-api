@@ -74,6 +74,7 @@ module.exports = {
               name,
               category,
               nominals,
+              user: req.session.user.id,
               thumbnail: filename,
             });
 
@@ -94,6 +95,7 @@ module.exports = {
           name,
           category,
           nominals,
+          user: req.session.user.id,
         });
         await voucher.save();
 
@@ -174,6 +176,7 @@ module.exports = {
                 nominals,
                 isFeatured: feature ? true : false,
                 thumbnail: filename,
+                user: req.session.user.id,
               },
               {
                 new: true,
@@ -199,6 +202,7 @@ module.exports = {
             name,
             category,
             nominals,
+            user: req.session.user.id,
             isFeatured: feature ? true : false,
           },
           {

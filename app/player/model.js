@@ -9,6 +9,12 @@ let playerSchema = mongoose.Schema(
       type: String,
       required: [true, "Email is required"],
     },
+    username: {
+      type: String,
+      required: [true, "Username is required"],
+      maxLength: [50, "Username cannot be more than 50 characters"],
+      minLength: [3, "Username cannot be less than 3 characters"],
+    },
     name: {
       type: String,
       required: [true, "Name is required"],

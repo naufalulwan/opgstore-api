@@ -71,7 +71,10 @@ let transactionSchema = mongoose.Schema(
         minLength: [9, "Phone number cannot be less than 9 characters"],
       },
     },
-
+    voucherTopup: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Voucher",
+    },
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
